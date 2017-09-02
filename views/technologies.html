@@ -1,0 +1,35 @@
+<div class="container cf">
+  <div>
+    <div class="width-3-4 pull-left" ng-init="technologies=[{
+            name: 'javascript', image: 'images/javascript.png'
+         }, {
+            name: 'java', image: 'images/java.png'
+         }, {
+            name: 'python', image: 'images/python.png'
+         }, {
+            name: 'php', image: 'images/php.png'
+         }, {
+            name: 'ruby', image: 'images/ruby.png'
+         }]">
+      <div class="technologies" ng-repeat="technology in technologies" ng-click="main.search(technology.name)">
+        <div class="image">
+          <img src="{{technology.image}}" alt="" />
+        </div>
+        <div class="technology">{{technology.name}}</div>
+      </div>
+    </div>
+    <div class="width-1-4 pull-left">
+      <div class="languages">
+        <strong>Languages</strong>
+        <div class="languages-container">
+          <table class='languages-table'>
+            <tr ng-repeat="language in main.languages">
+              <td>{{language.name}}</td>
+              <td class="pull-right"><strong>{{language.count}}</strong></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,143 @@
+<div class="container cf">
+  <div class="mask" ng-if="repositories.loading">
+    <span>loading...</span>
+  </div>
+  <div class="repo-breadcrumb">
+    <div class="col-2 header-search   js-site-search" role="search">
+      <form accept-charset="UTF-8" ng-submit="repositories.searchRepo();">
+        <input type="text" class="form-control header-search-input" ng-model="repositories.repository" placeholder="Search GitHub"
+          autocapitalize="off">
+        </label>
+      </form>
+    </div>
+    <div class="statistics col-9">
+      <div class="stats">Repositories<span class="counter">17K</span></div>
+      <div class="stats">Code<span class="counter">17K</span></div>
+      <div class="stats">Commits<span class="counter">17K</span></div>
+      <div class="stats">Issues<span class="counter">17K</span></div>
+      <div class="stats">Wikis<span class="counter">17K</span></div>
+      <div class="stats">Users<span class="counter">17K</span></div>
+    </div>
+  </div>
+  <div class="repository column col-12">
+    <div class="column width-3-4">
+      <div class="repository-filter">
+        <h3 class="repository-count">
+          {{repositories.total_count}} repository results
+        </h3>
+        <div class="pull-right">
+          <button class="btn btn-sm select-menu-button js-menu-target" type="button" ng-click="repositories.menu=!repositories.menu;">
+                        <i>Sort:</i>
+                        <span class="js-select-button">Best match</span>
+                    </button>
+          <div class="select-menu-modal-holder js-menu-content js-navigation-container" ng-class="{active: repositories.menu}">
+            <div class="select-menu-modal">
+              <div class="select-menu-list">
+                <span class="select-menu-item js-navigation-open js-navigation-item selected">
+                          <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path></svg>
+                          <span class="select-menu-item-text js-select-button-text">Best match</span>
+                </span>
+                <a class="select-menu-item js-navigation-open js-navigation-item">
+                  <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16"
+                    width="12">
+                    <path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path>
+                  </svg>
+                  <span class="select-menu-item-text js-select-button-text">Most stars</span>
+                </a>
+                <a class="select-menu-item js-navigation-open js-navigation-item">
+                  <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16"
+                    width="12">
+                    <path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path>
+                  </svg>
+                  <span class="select-menu-item-text js-select-button-text">Fewest stars</span>
+                </a>
+                <a class="select-menu-item js-navigation-open js-navigation-item">
+                  <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16"
+                    width="12">
+                    <path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path>
+                  </svg>
+                  <span class="select-menu-item-text js-select-button-text">Most forks</span>
+                </a>
+                <a class="select-menu-item js-navigation-open js-navigation-item">
+                  <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16"
+                    width="12">
+                    <path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path>
+                  </svg>
+                  <span class="select-menu-item-text js-select-button-text">Fewest forks</span>
+                </a>
+                <a class="select-menu-item js-navigation-open js-navigation-item">
+                  <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16"
+                    width="12">
+                    <path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path>
+                  </svg>
+                  <span class="select-menu-item-text js-select-button-text">Recently updated</span>
+                </a>
+                <a class="select-menu-item js-navigation-open js-navigation-item">
+                  <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16"
+                    width="12">
+                    <path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5z"></path>
+                  </svg>
+                  <span class="select-menu-item-text js-select-button-text">Least recently updated</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <ul class="repo-list">
+        <div ng-repeat="repository in repositories.repositories" class="repo-list-item">
+          <div class="col-8 pr-3">
+            <h3>
+              <a href="javascript:void(0);" class="v-align-middle">{{repository.full_name}}</a>
+            </h3>
+
+            <p class="col-9 text-gray description">
+              {{repository.description}}
+            </p>
+
+            <p class="f6 text-gray mb-0 mt-2">
+              <relative-time datetime="{{repository.updated_at}}">{{repository.updated_at}}</relative-time>
+            </p>
+          </div>
+
+          <div class="col-2 text-gray language">
+            <span class="repo-language-color ml-0" style="background-color:#f1e05a;"></span> JavaScript
+          </div>
+
+          <div class="col-2 text-right ratings">
+            <a class="muted-link" href="airbnb/javascript/stargazers">
+              <svg aria-label="star" class="octicon octicon-star" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14">
+                <path fill-rule="evenodd" d="M14 6l-4.9-.64L7 1 4.9 5.36 0 6l3.6 3.26L2.67 14 7 11.67 11.33 14l-.93-4.74z"></path>
+              </svg>
+              {{repository.stargazers_count}}
+            </a>
+          </div>
+        </div>
+      </ul>
+      <div class="paginate-container">
+        <div class="pagination">
+          <span ng-if="repositories.prev_page != 0" class="previous_page disabled" ng-click="repositories.prevPage();">Previous</span>
+          <em class="current">{{repositories.current_page}}</em>
+          <a rel="next" ng-if="repositories.next_page != 0" ng-click="repositories.nextPage();">Next</a></div>
+      </div>
+
+    </div>
+    <div class="column width-1-4">
+      <div class="languages">
+        <strong>Languages</strong>
+        <div class="languages-container">
+          <table class='languages-table'>
+            <tr ng-repeat="language in repositories.languages">
+              <td>{{language.name}}</td>
+              <td class="pull-right"><strong>{{language.count}}</strong></td>
+            </tr>
+          </table>
+        </div>
+        <div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>

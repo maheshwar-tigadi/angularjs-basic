@@ -1,0 +1,26 @@
+{
+  "name": "AngularJS",
+  "version": "0.0.1",
+  "authors": [
+    "Maheshwar Tigadi"
+  ],
+  "description": "Description goes here",
+  "main": "app.js",
+  "keywords": [
+    "angularjs"
+  ],
+  "license": "MIT",
+  "private": false,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.3.13",
+    "angular-route": "~1.3.13",
+    "angular-sanitize": "~1.3.13"
+  }
+}
